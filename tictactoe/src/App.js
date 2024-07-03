@@ -35,7 +35,10 @@ function Playground({ updater, mark, grid }) {
         <div className="playground">
           {grid.map((item, index) => {
             return (
+              <>
               <Grid value={item.value} handleOnClick={()=>updater(item)} />
+              {/* <Winner gridstate={item.value} /> */}
+              </>
             )
           })}
         </div>
@@ -44,15 +47,52 @@ function Playground({ updater, mark, grid }) {
   )
 }
 
-
-
-
-
 function Turn({ Player }) {
   return (
     <h1>It's your turn Player:{Player} </h1>
   );
 }
+
+function Winner({gridstate}){
+  const combinations = [
+    [1,2,3],
+    [4,5,6],
+    [7,8,9],
+    [1,4,7],
+    [2,5,8],
+    [3,6,9],
+    [1,5,9],
+    [3,5,7]
+  ]
+  const winner = ""
+  // return (
+  //   <>
+  //   {console.log(gridstate[0].value)}
+  //   </>
+  // )}
+  for (let combination of combinations) {
+    const [a, b, c] = combination;
+    // combination.forEach(item => gridstate.find())
+    if (gridstate[a-1].value && gridstate[a-1].value === gridstate[b-1].value && gridstate[a-1].value === gridstate[c-1].value) {
+      const marking = gridstate[a-1].value
+      return   (
+        <>
+        <h1>winner is:{marking}</h1>
+        </>
+
+       )
+      }
+    }
+  }
+
+
+  
+  // for(let i=0;i<10;i++){
+  //   if (gridstate.id(combinations[i][0]).value()==gridstate.id(combinations[i][1]).value() && gridstate.id(combinations[i][1]).value()==gridstate.id(combinations[i][2]).value()) {
+  //     console.log('yes');
+  //     break;
+  //   }
+  // }
 
 
 export default function MyApp() {
@@ -70,6 +110,7 @@ export default function MyApp() {
     { id: 9, value: "" }
   ]
 
+
   const [grid, setGrid] = useState(gridArr)
 
   const hanldeUpdate = (item) => {
@@ -84,11 +125,11 @@ export default function MyApp() {
   return (
     <>
       <Turn Player={!(Player % 2) ? "X" : "O"} />
+      <Winner gridstate={grid} />
       <Playground updater={hanldeUpdate}
        mark={"X"}
         grid={grid}
       />
-
     </>
   )
 }
