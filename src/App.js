@@ -10,7 +10,7 @@ function Grid({ value = '', handleOnClick }) {
     height: '30%',
     width: '30%',
     display: 'flex',
-    backgroundColor: hoverable ? 'rgba(219, 219, 214, 0.755)' : 'rgba(171, 171, 137, 0.755)',
+    backgroundColor: hoverable ? 'rgba(220, 219, 214, 0.755)' : 'rgba(171, 171, 137, 0.755)',
     borderRadius: '15px',
     display: 'flex',
     justifyContent: 'space-evenly',
